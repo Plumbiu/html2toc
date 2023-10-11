@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "a super tiny library parsing html to toc!",
   "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup --config tsup.config.ts"
   },
