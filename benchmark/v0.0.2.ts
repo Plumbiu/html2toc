@@ -23,13 +23,14 @@ export function html2toc(
     `<(h[${levelDep}])((?!</h[${levelDep}]).)*</\\1>`,
     'g',
   )
+  const ID = /id=["'](.*)["']/
+  const CONTENT = />(.*)</
   const toc: Toc[] = []
   let m: RegExpExecArray | null
   while ((m = HLABEL.exec(html))) {
     const h = m[0]
-    const idLoc = h.indexOf('id=') + 4
-    const id = h.slice(idLoc, h.indexOf('"', idLoc))
-    const content = h.slice(h.indexOf('>') + 1, h.indexOf('</'))
+    const id = ID.exec(h)?.[1]
+    const content = CONTENT.exec(h)?.[1] ?? ''
     toc.push({
       level: Number(h[2]),
       hash: '#' + id,

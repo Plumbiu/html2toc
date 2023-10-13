@@ -1,13 +1,15 @@
 {
   "name": "html2toc",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "a super tiny library parsing html to toc!",
   "main": "dist/index.js",
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "tsup --config tsup.config.ts"
+    "build": "tsup --config tsup.config.ts",
+    "test": "pnpm vitest",
+    "bench": "pnpm vitest bench"
   },
   "keywords": [
     "markdown",
@@ -32,6 +34,7 @@
   "license": "MIT",
   "devDependencies": {
     "tsup": "^7.2.0",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "vitest": "^0.34.6"
   }
 }

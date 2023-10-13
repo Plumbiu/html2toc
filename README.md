@@ -2,6 +2,12 @@
 
 Part of [@plumbiu/md](https://github.com/Plumbiu/md).
 
+## Feature
+
+- Tiny
+- Fast
+- Well tested
+
 # Usage
 
 ```ts
