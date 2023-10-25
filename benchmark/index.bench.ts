@@ -1,8 +1,19 @@
 import { bench } from 'vitest'
 import { html2toc as html2tocV0_0_1 } from './v0.0.1'
 import { html2toc as html2tocV0_0_2 } from './v0.0.2'
+import { html2toc as stringslice } from './try/string-slice'
 import { html2toc } from '../src'
 import { html } from './html'
+
+bench(
+  'latest',
+  () => {
+    html2toc(html)
+  },
+  {
+    time: 100,
+  },
+)
 
 bench(
   'v0.0.1',
@@ -10,7 +21,7 @@ bench(
     html2tocV0_0_1(html)
   },
   {
-    time: 10,
+    time: 100,
   },
 )
 
@@ -20,16 +31,16 @@ bench(
     html2tocV0_0_2(html)
   },
   {
-    time: 10,
+    time: 100,
   },
 )
 
 bench(
-  'vlatest',
+  'stringslice',
   () => {
-    html2toc(html)
+    stringslice(html)
   },
   {
-    time: 10,
+    time: 100,
   },
 )
