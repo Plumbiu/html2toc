@@ -19,19 +19,19 @@ export function html2toc(
   for (let i = 1; i <= depth; i++) {
     levelDep += i
   }
-  const HLABEL = new RegExp(`<h[${levelDep}]`, 'g')
+  const HLABEL = new RegExp(
+    `<(h[${levelDep}])((?!</h[${levelDep}]).)*</\\1>`,
+    'g',
+  )
   const toc: Toc[] = []
   let m: RegExpExecArray | null
   while ((m = HLABEL.exec(html))) {
-    const idx = m.index
-    const idLoc = html.indexOf('id', idx) + 4
-    const id = html.slice(idLoc, html.indexOf('"', idLoc))
-    const content = html.slice(
-      html.indexOf('>', idLoc) + 1,
-      html.indexOf('</', idLoc),
-    )
+    const h = m[0]
+    const idLoc = h.indexOf('id=') + 4
+    const id = h.slice(idLoc, h.indexOf('"', idLoc))
+    const content = h.slice(h.indexOf('>') + 1, h.indexOf('</'))
     toc.push({
-      level: +m[0][2],
+      level: Number(h[2]),
       hash: '#' + id,
       content,
     })
